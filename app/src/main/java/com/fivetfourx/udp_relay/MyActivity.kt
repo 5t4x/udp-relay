@@ -21,7 +21,7 @@ class MyActivity : AppCompatActivity() {
 
         sharedPref = getSharedPreferences(prefsKey, MODE_PRIVATE)
 
-        foregroundSwitch = findViewById<SwitchCompat>(R.id.foregroundSwitch)
+        foregroundSwitch = findViewById(R.id.foregroundSwitch)
 
         updateForegroundSwitch()
 
@@ -49,7 +49,7 @@ class MyActivity : AppCompatActivity() {
     }
 
     private fun updateForegroundSwitch() {
-        foregroundSwitch.isActivated = getServiceState(this) == ServiceState.STARTED
+        foregroundSwitch.isChecked = getServiceState(this) == ServiceState.STARTED
     }
 
     override fun onResume() {
