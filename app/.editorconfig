@@ -1,0 +1,43 @@
+# top-most EditorConfig file
+root = true
+
+# Kotlin files
+[*.kt]
+
+# Use UTF-8 encoding
+charset = utf-8
+
+# Indentation settings
+indent_style = space
+indent_size = 4
+tab_width = 4
+
+# Insert a newline at the end of every file
+insert_final_newline = true
+
+# Trim trailing whitespaces
+trim_trailing_whitespace = true
+
+# Enforce maximum line length of 100 characters
+max_line_length = 100
+
+# Ensure braces are always on a new line for functions, classes, and control structures
+# except for single expressions
+[*.kt]
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 100
+indent_style = space
+indent_size = 4
+tab_width = 4
+brace_style = stroustrup
+continuation_indent_size = 4
+# function declarations and calls
+[*.kt]
+align_parameter_names = true
+bin_pack_parameters = true
+
+# Sorting and grouping imports
+[*.kt]
+import_order = kotlin,java,javax,scala,org,com
+import_layout = android,kotlin,java,javax,scala,org,com
