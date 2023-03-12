@@ -3,14 +3,15 @@ package com.fivetfourx.udp_relay
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class MyActivity : AppCompatActivity() {
     private lateinit var sharedPref: SharedPreferences
+    private lateinit var foregroundSwitch: SwitchCompat
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,15 +21,15 @@ class MyActivity : AppCompatActivity() {
 
         sharedPref = getSharedPreferences(prefsKey, MODE_PRIVATE)
 
-        findViewById<Button>(R.id.btnStartService).let {
-            it.setOnClickListener {
+        foregroundSwitch = findViewById<SwitchCompat>(R.id.foregroundSwitch)
+
+        updateForegroundSwitch()
+
+        foregroundSwitch.setOnClickListener {
+            if (foregroundSwitch.isChecked) {
                 log("START THE FOREGROUND SERVICE ON DEMAND")
                 actionOnService(Actions.START)
-            }
-        }
-
-        findViewById<Button>(R.id.btnStopService).let {
-            it.setOnClickListener {
+            } else {
                 log("STOP THE FOREGROUND SERVICE ON DEMAND")
                 actionOnService(Actions.STOP)
             }
@@ -47,7 +48,21 @@ class MyActivity : AppCompatActivity() {
         )
     }
 
-    private fun setupAddressInput(input: TextInputEditText, layout: TextInputLayout, key: String) {
+    private fun updateForegroundSwitch() {
+        foregroundSwitch.isActivated = getServiceState(this) == ServiceState.STARTED
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        updateForegroundSwitch()
+    }
+
+    private fun setupAddressInput(
+        input: TextInputEditText,
+        layout: TextInputLayout,
+        key: String
+    ) {
         input.text?.clear()
         input.text?.append(sharedPref.getString(key, defaultRemote))
         input.addTextChangedListener {

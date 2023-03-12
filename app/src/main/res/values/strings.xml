@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">UDP Relay</string>
     <string name="smiley_icon_content">Yellow smiley face</string>
-    <string name="service_start">Start Foreground Service</string>
-    <string name="service_stop">Stop Foreground Service</string>
+    <string name="service">Foreground Service</string>
     <string name="label_relay">Relay (IP:PORT)</string>
     <string name="label_remote">Remote (IP:PORT)</string>
 </resources>

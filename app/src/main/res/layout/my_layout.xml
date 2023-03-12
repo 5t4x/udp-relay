@@ -14,27 +14,19 @@
         android:contentDescription="@string/smiley_icon_content"
         app:srcCompat="@drawable/smiley_icon" />
 
-    <Button
-        android:id="@+id/btnStartService"
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/foregroundSwitch"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/service_start" />
-
-    <Button
-        android:id="@+id/btnStopService"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/service_stop" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="34dp" />
+        android:text="@string/service"
+        android:textSize="16sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputRelayLayout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:hint="@string/label_relay"
         app:errorEnabled="false">
 
