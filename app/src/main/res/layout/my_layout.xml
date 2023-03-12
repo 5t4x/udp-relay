@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
@@ -33,9 +32,11 @@
         android:layout_height="34dp" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputRelayLayout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="@string/label_relay">
+        android:hint="@string/label_relay"
+        app:errorEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputRelay"
@@ -48,6 +49,7 @@
         android:layout_height="6dp" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputRemoteLayout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="@string/label_remote">

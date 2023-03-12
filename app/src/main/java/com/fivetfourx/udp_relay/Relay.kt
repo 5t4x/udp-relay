@@ -31,8 +31,8 @@ class RelayUDP(private val relayStr: String, private val remoteStr: String) {
         running = true
         executorService = Executors.newSingleThreadExecutor()
         executorService?.submit {
-            var relay = parseInput(relayStr)
-            var remote = parseInput(remoteStr)
+            var relay = parseAddress(relayStr)
+            var remote = parseAddress(remoteStr)
 
             socket = DatagramSocket(relay)
             var knownClient: InetSocketAddress? = null

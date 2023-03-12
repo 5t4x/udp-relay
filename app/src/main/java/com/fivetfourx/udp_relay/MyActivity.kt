@@ -7,6 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class MyActivity : AppCompatActivity() {
     private lateinit var sharedPref: SharedPreferences
@@ -33,20 +34,27 @@ class MyActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<TextInputEditText>(R.id.inputRemote).let {
-            it.text?.clear()
-            it.text?.append(sharedPref.getString("inputRemote", defaultRemote))
-            it.addTextChangedListener {
-                sharedPref.edit().putString("inputRemote", it.toString()).apply()
-            }
-        }
+        setupAddressInput(
+            findViewById(R.id.inputRemote),
+            findViewById(R.id.inputRemoteLayout),
+            "inputRemote"
+        )
 
-        findViewById<TextInputEditText>(R.id.inputRelay).let {
-            it.text?.clear()
-            it.text?.append(sharedPref.getString("inputRelay", defaultRelay))
-            it.addTextChangedListener {
-                sharedPref.edit().putString("inputRelay", it.toString()).apply()
-                false
+        setupAddressInput(
+            findViewById(R.id.inputRelay),
+            findViewById(R.id.inputRelayLayout),
+            "inputRelay"
+        )
+    }
+
+    private fun setupAddressInput(input: TextInputEditText, layout: TextInputLayout, key: String) {
+        input.text?.clear()
+        input.text?.append(sharedPref.getString(key, defaultRemote))
+        input.addTextChangedListener {
+            if (!validateAddress(it.toString())) layout.error = "Invalid address"
+            else {
+                layout.error = null
+                sharedPref.edit().putString(key, it.toString()).apply()
             }
         }
     }
