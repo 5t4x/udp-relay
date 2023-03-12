@@ -4,9 +4,9 @@ package com.fivetfourx.udp_relay
 import android.util.Log
 import java.net.InetSocketAddress
 
-val prefsKey = "udp relay"
-val defaultRelay = "127.0.0.1:5300"
-val defaultRemote = "1.1.1.1:53"
+const val prefsKey = "udp relay"
+const val defaultRelay = "127.0.0.1:5300"
+const val defaultRemote = "1.1.1.1:53"
 
 fun parseAddress(input: String): InetSocketAddress {
     var split = input.split(":")
@@ -21,14 +21,14 @@ fun parseAddress(input: String): InetSocketAddress {
 }
 
 fun validateAddress(input: String): Boolean {
-    var split = input.split(":")
+    val split = input.split(":")
     if (split.size != 2) return false
     val (host, port) = split
-    if (!port.matches("[0-9]+".toRegex())) return false
+    if (!port.matches("\\d+".toRegex())) return false
     if (host.length > 253) return false
     val elements = host.split(".")
     for (element in elements) {
-        if (!element.matches("[a-zA-Z0-9-]*".toRegex())) return false
+        if (!element.matches("[a-zA-Z\\d-]*".toRegex())) return false
         if (element.length > 63) return false
     }
     return true
